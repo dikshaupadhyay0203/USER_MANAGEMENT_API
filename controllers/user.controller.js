@@ -5,29 +5,41 @@ export const getUsers=(req,res)=>{
     res.status(200).json({success:true,count:users.length,data:users});
 };
 
-export const createUser = (req,res) => {
-    try{
-      console.log(req.body)
-        const {name,email}=req.body;
+// export const createUser = (req,res) => {
+//     try{
+//       console.log(req.body)
+//         const {name,email}=req.body;
 
-        //Validation
-        if(!name || !email){
-            return res.status(400).json({success:false ,message:"Name and email are required"});
+//         Validation
+//         if(!name || !email){
+//             return res.status(400).json({success:false ,message:"Name and email are required"});
 
-        }
-        const newUser={
-            id:Date.now().toString(),
-            name,
-            email
-        };
-        users.push(newUser);
-        res.status(201).json({success:true ,message:"User created successfully",data:newUser});
-    }
-    catch(error){
-        res.status(500).json({success:false ,message:"Internal server error"}); 
-    }
+//         }
+//         const newUser={
+//             id:Date.now().toString(),
+//             name,
+//             email
+//         };
+//         users.push(newUser);
+//         res.status(201).json({success:true ,message:"User created successfully",data:newUser});
+//     }
+//     catch(error){
+//         res.status(500).json({success:false ,message:"Internal server error"}); 
+//     }
+// }
+
+export const createUser=(req,res)=>{
+    const newUser={
+        id: Date.now().toString(),
+        ...req.body
+    };
+    users.push(newUser);
+
+    res.status(201).json({
+        success:true,
+        data: newUser
+    });
 }
-
 
 export const updateUser=(req,res)=>{
     const {id}=req.params;
