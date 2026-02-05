@@ -1,5 +1,8 @@
 let success=true;
 export const checkAuth = (req, res, next) => {
+
+    const body=req.body;
+    console.log("body");
    if(success){
         console.log("Authentication Checked");
         next();
