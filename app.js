@@ -1,15 +1,17 @@
-import express from "express"
-import userRouter from "./routes/users.routes.js"
+import express from "express";
+import userRouter from "./routes/users.routes.js";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+// Middleware
+app.use(express.json());
 
-app.get("/", (req, res)=>{
-  res.send("User management is run")
+// ✅ GET route (sir asked)
+app.get("/", (req, res) => {
+  res.status(200).send("User Management API is running");
+});
 
-})
+// User routes
+app.use("/api/users", userRouter);
 
-app.use("/api/users",userRouter)
-
-export default app
+export default app;
