@@ -46,3 +46,6 @@ export const getAllUsers = () => {
     console.log("Getting all users");
     return users;
 };
+
+let user=createUser("Diksha","diksha@gmail.com");
+console.log("users detail pushing",user)

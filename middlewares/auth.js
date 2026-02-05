@@ -3,6 +3,7 @@ export const checkAuth = (req, res, next) => {
 
     const body=req.body;
     console.log("body");
+    const {authorization} =req.header;
    if(success){
         console.log("Authentication Checked");
         next();
@@ -32,3 +33,15 @@ export const validateUserId = (req, res, next) => {
     next();
 };
 
+export const validateZod=(schema)=>(req,res,next)=>{
+    let result=schema.safeParse(req.body);
+    console.log("result errors",result)
+    if(!result.success){
+        return res.status(400).json({
+            success:false,
+            errors:  result.error.errors
+        });
+    }
+       req.body=result.data;
+       next();
+};

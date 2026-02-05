@@ -2,6 +2,7 @@ import express  from 'express';
 import {getUsers,getUserById,createUser,updateUser,deleteUser} from '../controllers/user.controller.js';
 import {checkAuth,validateUserId} from '../middlewares/auth.js';
 import {validateCreateUserDTO} from '../dtos/user.dto.js';
+import {validateZod} from '../middlewares/auth.js'
 const router=express.Router();
 
 router.get("/",checkAuth,getUsers);
