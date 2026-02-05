@@ -27,6 +27,8 @@ export const createUser = (req,res) => {
         res.status(500).json({success:false ,message:"Internal server error"}); 
     }
 }
+
+
 export const updateUser=(req,res)=>{
     const {id}=req.params;
     const {name,email}=req.body;
